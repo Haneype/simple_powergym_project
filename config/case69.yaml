@@ -1,0 +1,50 @@
+# ===== 配电网环境 (IEEE 69节点) =====
+env:
+  system: "case69"
+  v_min: 0.95
+  v_max: 1.05
+  v_base: 1.0
+  episode_steps: 24
+  dt: 1.0
+
+# ===== 储能 (ESS) - 5个,分布在两条薄弱馈线 =====
+ess:
+  # 索引: 节点61(60), 节点64(63), 节点65(64), 节点21(20), 节点27(26)
+  buses: [60, 63, 64, 20, 26]
+  E_max: 1.5
+  S_max: 0.4
+  P_max: 0.4
+  soc_init: 0.5
+  soc_min: 0.1
+  soc_max: 0.9
+  eta_c: 0.95
+  eta_dc: 0.95
+  life_loss_coef: 5.0          # 沿用33节点调好的低成本设定
+
+# ===== 奖励 =====
+reward:
+  rho1: 100.0
+
+# ===== MASAC 算法 =====
+algo:
+  name: "masac"
+  gamma: 0.99
+  tau: 0.005
+  lr_actor: 0.0003
+  lr_critic: 0.0003
+  lr_alpha: 0.0003
+  hidden_dim: 256
+  batch_size: 256
+  buffer_size: 100000
+  start_steps: 1000
+  auto_entropy: true
+
+# ===== 训练 =====
+train:
+  episodes: 1000
+  seed: 42
+  eval_interval: 10
+  save_interval: 200
+  device: "cpu"
+  results_dir: "results/case69"    # 结果分目录
+  plots_dir: "plots/case69"

@@ -1,9 +1,29 @@
-.idea/
-*.iml
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# 虚拟环境
+venv/
 .venv/
+env_conda/
+
+# IDE
+.idea/
+.vscode/
+
+# 训练输出
 results/*
 plots/*
 !results/.gitkeep
 !plots/.gitkeep
+
+# 模型权重
+*.pth
+*.pt
+checkpoints/
+
+# 系统
+.DS_Store
+Thumbs.db
